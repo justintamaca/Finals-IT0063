@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon GO Webstore</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styling */
+        .container {
+            margin-top: 30px;
+        }
+        /* Featured promotions */
+        .promotions {
+            margin-top: 20px;
+        }
+        .promotion img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+        /* Promotion details */
+        #promotionDetailsContainer {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+        #promotionDetailsContainer #promotionDetails {
+            position: relative;
+        }
+        #promotionDetailsContainer #promotionDetails #closeIcon {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+        }
+        #promotionDetailsContainer h4 {
+            margin-top: 0;
+        }
+        .limited-time {
+            color: red;
+            font-weight: bold;
+        }
+        /* Sign-in and sign-out buttons */
+        .signin-button, .signout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .signin-button:hover, .signout-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 class="h1">Asda</h1>
+            <img src="pkmn.png" alt="Group Logo">
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="payment.html">Payment</a></li>
+            <li><a href="transactions.html">Transaction History</a></li>
+            <li><a href="profile.html">Profile</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <!-- Home Page -->
+        <section id="home">
+            <h2>Welcome to Pokemon GO Webstore <span id="usernameSpan"></span></h2>
+            <!-- Featured Promotions -->
+            <div class="promotions">
+                <h3>Featured Promotions</h3>
+                <div class="promotion">
+                    <img src="discount.png" alt="Promotion 1">
+                </div>
+                <div class="promotion" id="featPromotion">
+                    <img src="feat.png" alt="Promotion 2">
+                </div>
+            </div>
+            <!-- User section for sign-in/sign-out -->
+            <div id="userSection" class="user-section">
+                <!-- This section will be dynamically updated based on user sign-in status -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Container for promotion details -->
+    <div id="promotionDetailsContainer">
+        <div id="promotionDetails">
+            <div id="promotionContent">
+                <span id="closeIcon" onclick="hideDetails()">&times;</span> <!-- Close icon -->
+                <h4>Promotion Details</h4>
+                <img src="deets.png" alt="Promotion Image">
+                <p>Pokémon GO Fest 2024: Global Ticket</p>
+                <p class="limited-time">LIMITED TIME ONLY</p> <!-- Limited time banner with class -->
+                <p>Feel free to customize this content as needed.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; Niantic. This project is for educational purposes only and no copyright infringement is intended.</p>
+        </div>
+    </footer>
+
+    <!-- Script to check user sign-in status and show promotion details -->
+    <script>
+        // Check if user is signed in
+        var ign = localStorage.getItem('ign');
+        console.log("Retrieved ign from local storage:", ign); // Debugging statement
+
+        var userSection = document.getElementById('userSection');
+        var usernameSpan = document.getElementById('usernameSpan');
+
+        if (ign) {
+            // User is signed in
+            usernameSpan.innerText = ign;
+            userSection.innerHTML = '<button onclick="signOut()" class="signout-button">Sign Out</button>';
+        } else {
+            // User is not signed in
+            userSection.innerHTML = '<a href="signin.html" class="signin-button">Sign In</a>';
+        }
+
+        // Function to sign out
+        function signOut() {
+            // Clear username from span
+            usernameSpan.innerText = '';
+            // Log user out
+            console.log("User logged out.");
+            // Redirect to sign-in page
+            window.location.href = "signin.html";
+        }
+
+        // Function to show promotion details
+        function showDetails() {
+            var featPromotion = document.getElementById('featPromotion');
+            var promotionDetailsContainer = document.getElementById('promotionDetailsContainer');
+
+            // Calculate the position of featPromotion
+            var rect = featPromotion.getBoundingClientRect();
+
+            // Set position of promotionDetailsContainer
+            promotionDetailsContainer.style.top = rect.bottom + 'px';
+            promotionDetailsContainer.style.left = rect.left + 'px';
+
+            // Display the container
+            promotionDetailsContainer.style.display = 'block';
+        }
+
+        // Function to hide promotion details
+        function hideDetails() {
+            var promotionDetailsContainer = document.getElementById('promotionDetailsContainer');
+
+            // Hide the container
+            promotionDetailsContainer.style.display = 'none';
+        }
+
+        // Add event listener to featPromotion image when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            var featPromotion = document.getElementById('featPromotion');
+
+            // Check if featPromotion exists
+            if (featPromotion) {
+                // Add click event listener to featPromotion
+                featPromotion.addEventListener('click', showDetails);
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #ee4035;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+.signin {
+    margin-left: auto;
+}
+
+/* Specific styles for individual sections */
+#home {
+    text-align: center;
+}
+
+#store {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+#store img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+#cart table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#cart th, #cart td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#cart th {
+    background-color: #eee;
+}
+
+#payment form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Make the logo smaller */
+header img {
+    max-width: 100px; /* Adjust the max-width to make the logo smaller */
+}
+
+/* Add styles for the sign-in button */
+.signin {
+    color: #fff;
+    background-color: #409992;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+/* Position the sign-in button */
+.signin {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    nav ul li {
+        margin-right: 10px;
+    }
+    header h1 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    header img {
+        max-width: 80px;
+    }
+    nav ul li {
+        margin-right: 5px;
+    }
+}
+/* Add styles for the registration page */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.user-section {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.signin-button {
+    background-color: #409992; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.signout-button {
+    background-color: #409992; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.signout-button:hover {
+    background-color: #d32f2f; 
+}
+/* CSS for Promotions */
+.promotions {
+    margin-top: 20px;
+}
+
+.promotion {
+    margin-bottom: 20px;
+}
+
+.promotion img {
+    max-width: 100%;
+    height: auto;
+}
+
+.promotion p {
+    font-size: 16px;
+}
+#featPromotion img:hover {
+    cursor: pointer;
+}
+#closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.limited-time {
+    background-color: #f34093; 
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Align items horizontally */
+}
+
+#promotionDetailsContainer {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+}

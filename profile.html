@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Pokemon GO Webstore</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styling */
+        .container {
+            margin-top: 30px;
+        }
+        #userInfo {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #userInfo p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Profile</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="payment.html">Payment</a></li>
+            <li><a href="transactions.html">Transactions</a></li>
+            <li><a href="profile.html">Profile</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="userProfile">
+        <h2>User Profile</h2>
+        <div id="userInfo">
+            <!-- User information will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Pokemon GO Webstore. All rights reserved.</p>
+            <p>Disclaimer: This website is for educational purposes only. No copyright infringement is intended.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is signed in
+        var email = localStorage.getItem('email');
+        var ign = localStorage.getItem('ign');
+        var playerId = localStorage.getItem('player_id');
+
+        // Get the element where user info will be displayed
+        var userInfoElement = document.getElementById('userInfo');
+
+        if (email && ign && playerId) {
+            // User is signed in, display user info
+            userInfoElement.innerHTML = '<p><strong>Email:</strong> ' + email + '</p>' +
+                                        '<p><strong>In-game Player ID:</strong> ' + playerId + '</p>' +
+                                        '<p><strong>In-game Name (IGN):</strong> ' + ign + '</p>';
+        } else {
+            // User is not signed in, display sign-in message
+            userInfoElement.innerHTML = '<p>Please sign in to view your profile.</p>';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light gray background color */
+            font-family: Arial, sans-serif; /* Use Arial font family */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff; /* White background color for the container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container form label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .container form input[type="text"],
+        .container form input[type="password"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container form button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container form button:hover {
+            background-color: #45a049;
+        }
+
+        .container form p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container form p a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+
+        .container form p a:hover {
+            text-decoration: underline;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-link img {
+            width: 100px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Clickable logo -->
+        <a href="index.html" class="logo-link"><img src="pkmn.png" alt="Logo"></a>
+        <h2>Sign In</h2>
+        <form id="signInForm">
+            <label for="ign">In-game Name (IGN):</label>
+            <input type="text" id="ign" name="ign" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <!-- Sign In button -->
+            <button type="button" onclick="signIn()">Sign In</button>
+
+            <!-- Link to registration page -->
+            <p>Don't have an account? <a href="registration.html">Register here</a>.</p>
+        </form>
+    </div>
+
+    <script>
+        function signIn() {
+            // Get form values
+            var signInIGN = document.getElementById('ign').value;
+            var signInPassword = document.getElementById('password').value;
+
+            // Retrieve registration information from local storage
+            var storedIGN = localStorage.getItem('ign');
+            var storedPassword = localStorage.getItem('password');
+
+            // Check if IGN and password match stored values
+            if (storedIGN === signInIGN && storedPassword === signInPassword) {
+                alert('Sign in successful!');
+                // Redirect to index.html
+                window.location.href = "dashboard.html";
+            } else {
+                alert('Incorrect IGN or password. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

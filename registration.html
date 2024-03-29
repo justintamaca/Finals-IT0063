@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <form id="registrationForm">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <label for="player_id">In-game Player ID:</label>
+            <input type="text" id="player_id" name="player_id" readonly>
+
+            <label for="ign">In-game Name (IGN):</label>
+            <input type="text" id="ign" name="ign" required>
+
+            <button type="button" onclick="register()">Register</button>
+            <p>Already have an account? <a href="index.html">Signin here</a>.</p>
+        </form>
+    </div>
+
+    <script>
+        // Function to generate a random player ID
+        function generatePlayerID() {
+            let result = '';
+            const characters = '0123456789';
+            const charactersLength = characters.length;
+            for (let i = 0; i < 12; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                if ((i + 1) % 4 === 0 && i !== 11) {
+                    result += ' '; // Add space after every 4th character
+                }
+            }
+            return result;
+        }
+
+        // Set the value of the player ID input field to the generated ID
+        document.getElementById('player_id').value = generatePlayerID();
+
+        // Function to validate form data
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirm_password = document.getElementById('confirm_password').value;
+            var ign = document.getElementById('ign').value;
+
+            // Check if email is valid
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            // Check if password meets criteria
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return false;
+            }
+
+            // Check if passwords match
+            if (password !== confirm_password) {
+                alert('Passwords do not match.');
+                return false;
+            }
+
+            // Add more validation logic as needed
+
+            return true; // Form data is valid
+        }
+
+        // Function to validate email format
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+
+        // Function to handle registration
+        function register() {
+            if (validateForm()) {
+                // Get form values
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                var ign = document.getElementById('ign').value;
+                var player_id = document.getElementById('player_id').value;
+
+                // Store registration information in local storage
+                localStorage.setItem('email', email);
+                localStorage.setItem('password', password);
+                localStorage.setItem('ign', ign);
+                localStorage.setItem('player_id', player_id);
+
+                // Show success message
+                alert('Registration successful! You will now be redirected to the home page.');
+
+                // Redirect to another page or perform other actions
+                window.location.href = "index.html"; // Redirect to the home page
+                
+                // Check if ign is null (for debugging purposes)
+                var storedIGN = localStorage.getItem('ign');
+                console.log('Stored IGN:', storedIGN);
+            }
+        }
+    </script>
+</body>
+</html>
